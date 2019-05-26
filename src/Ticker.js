@@ -1,41 +1,48 @@
 class Ticker {
-  constructor () {
-    this.start_ = null
-    this.pause_ = null
+  constructor (duration) {
+    this.duration = duration
+    this.delta = null
+    this.start = null
+    this._pause = false
+    this.tick = this.tick.bind(this)
   }
 
-  play () {
-    if (this.start_){
+  tick (timestamp) {
+    if (this._pause) {
       return
     }
 
-    if (this.pause_) {
-      // this.start_ = performance.now()
-      this.pause_ = null
+    if (!this.start){
+      this.start = timestamp
     }
 
-    this.start_ = performance.now()
+    this.delta = (timestamp - this.start) % (this.duration * 1000)
+    const payload = {value: this.delta / 1000 / this.duration}
 
-    const tick = timestamp => {
-      if (this.pause_){
-        return
-      }
+    const event = new CustomEvent('tick', {detail: payload})
 
-      const duration = Number(durationInput.value)
-      const delta = (timestamp - this.start_) / 1000 % duration
+    document.dispatchEvent(event)
 
-      const event = new CustomEvent('tick', {detail: {value: delta / duration}})
+    requestAnimationFrame(this.tick)
+  }
 
-      document.dispatchEvent(event)
-
-      requestAnimationFrame(tick)
+  play () {
+    if (this.start && !this._pause){
+      console.warn('Already being played')
+      return
     }
 
-    requestAnimationFrame(tick)
+    if (this.start && this._pause){
+      this.start = performance.now() - this.delta
+      this._pause = false
+    }
+
+    requestAnimationFrame(this.tick)
   }
 
   pause () {
-    this.pause_ = performance.now()
-    this.start_ = null
+    this._pause = true
   }
 }
+
+export default Ticker
