@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+
+		input[type="range"] {
+			width: 100%;
+		}
+
+		canvas.main {
+			display: block;
+			margin: 15px auto;
+			width: 600px;
+			height: 600px;
+			border: 1px black solid;
+		}
+	</style>
+
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.min.js" integrity="sha256-wEYWZyN8ZS6ht2AUoHFTEx8C+n5EdQFZ/aTqfjBNRK0=" crossorigin="anonymous"></script> -->
+</head>
+<body>
+	<label>
+		time: <input type="number" class="duration" value="10" step="0.1"><br>
+		<input type="range" min="0" max="1000" step="1" autocomplete="off" value="0">
+	</label>
+
+	<button class="setup">setup</button>
+	&nbsp;
+	<button class="play">play</button>
+	<button class="pause">pause</button>
+	&nbsp;
+	<button class="render">render</button>
+
+	<canvas class="main" width="600" height="600"></canvas>
+	<div class="container"></div>
+
+	<script src="vendor/three.min.js"></script>
+	<script src="vendor/stats.min.js"></script>
+	<script src="example.js"></script>
+</body>
+</html>

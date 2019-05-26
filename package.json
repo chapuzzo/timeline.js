@@ -1,0 +1,34 @@
+{
+  "name": "timeline",
+  "version": "1.0.0",
+  "description": "simple chaineable timeline management",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev-watch": "nodemon --exec 'babel-node ./example' --watch example",
+    "dev": "babel-node ./example"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "babel-preset-env": "^1.7.0",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1",
+    "poi": "^12.6.10",
+    "webpack-dev-middleware": "^3.7.0"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
+  }
+}
