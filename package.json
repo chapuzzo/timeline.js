@@ -13,7 +13,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/node": "^7.4.5",
-    "babel-preset-env": "^1.7.0",
+    "@babel/preset-env": "^7.4.5",
     "express": "^4.17.1",
     "nodemon": "^1.19.1",
     "poi": "^12.6.10",
@@ -22,7 +22,7 @@
   "babel": {
     "presets": [
       [
-        "env",
+        "@babel/preset-env",
         {
           "targets": {
             "node": "current"
